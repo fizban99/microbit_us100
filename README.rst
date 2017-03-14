@@ -1,9 +1,9 @@
 Basic micropython library to read the distance from an ultrasonic sensor US-100 in serial mode
 ##############################################################################################
 
-This library allows the micro:bit to read the distance from an ultrasonic sensor US-100 (Y401)) or similar.
+This library allows the micro:bit to read the distance from an ultrasonic sensor US-100 (Y401)).
 
-It uses the SPI hardware internal device to measure the length of the returning echo, so by default you should connect the sonar echo pin to micro:bit pin 14 and th sonar trigger pin to micro:bit pin 15. The HC-SR04 works with 5V, so you should protect the micro:bit input with a couple of resistors. 
+It uses the serial port to communicate with the device and to retrieve both the distance and temperature. 
 
 .. contents::
 
@@ -13,7 +13,8 @@ It uses the SPI hardware internal device to measure the length of the returning 
 Main features
 =============
 
-* Get the distance in cm from the sonar to an object.
+* Get the distance in mm from the sonar to an object.
+* Get the temperture measured by the sensor.
 * Sample program.
 
 
@@ -21,21 +22,39 @@ Library usage
 =============
 
 
-distance_cm()
+distance_mm()
 +++++++++++++++++++++++
 
 
-Get the distance in cm with one decimal.
+Get the distance in mm.
 
 
 .. code-block:: python
 
-   from hcsr04 import HCSR04
+   from us100 import US100
    from microbit import sleep
 
 
-   sonar=HCSR04()
+   sonar=US100()
    while True:
-       print('%.1f' % sonar.distance_cm())
+       print('%.1f' % (sonar.distance_mm()/10))
+       sleep(1000)
+
+temperature()
++++++++++++++++++++++++
+
+
+Get the temperature from the sonar
+
+
+.. code-block:: python
+
+   from us100 import US100
+   from microbit import sleep
+
+
+   sonar=US100()
+   while True:
+       print('%i' % sonar.temperature)
        sleep(1000)
 
