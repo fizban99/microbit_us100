@@ -3,7 +3,7 @@ Basic micropython library to read the distance from an ultrasonic sensor US-100 
 
 This library allows the micro:bit to read the distance from an ultrasonic sensor US-100 (Y401)).
 
-It uses the serial port to communicate with the device and to retrieve both the distance and temperature. 
+It uses the serial port to communicate with the device and to retrieve both the distance and temperature. By default it assumes pin15 connected to trigger/tx and pin14 connected to echo/rx
 
 .. contents::
 
